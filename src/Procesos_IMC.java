@@ -27,8 +27,11 @@ public class Procesos_IMC extends JFrame {
         btnCalcular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String estado = calcularIMC();
-                mostrarDatos(estado);
+                boolean esValido = validarDatos();
+                if (esValido){
+                    String estado = calcularIMC();
+                    mostrarDatos(estado);
+                }
             }
         });
         btnLimpiar.addActionListener(new ActionListener() {
@@ -40,6 +43,19 @@ public class Procesos_IMC extends JFrame {
                 txtTalla.setText("");
             }
         });
+    }
+
+    private boolean validarDatos() {
+        int edad = Integer.parseInt(txtEdad.getText());
+        double peso = Double.parseDouble(txtPeso.getText());
+        double talla = Double.parseDouble(txtTalla.getText());
+
+        boolean res = true;
+        if (edad<0 || peso<0 || talla<0){
+            JOptionPane.showMessageDialog(null, "Ingrese numeros positivos");
+            res = false;
+        }
+        return res;
     }
 
     private void mostrarDatos(String estado) {
@@ -87,7 +103,6 @@ public class Procesos_IMC extends JFrame {
         } else {
             System.out.println("No cae");
         }
-
         return estado;
     }
 
