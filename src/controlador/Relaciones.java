@@ -12,7 +12,6 @@ public class Relaciones {
 		// Se instancian las clases
 		VentanaPrincipal ventanaPrincipal=new VentanaPrincipal();
 		VentanaRegistro ventanaRegistro = new VentanaRegistro(ventanaPrincipal,true);
-		VentanaOperaciones ventanaOperaciones = new VentanaOperaciones(ventanaRegistro, true);
 		VentanaConsultaIndividual ventanaConsultaIndividual=new VentanaConsultaIndividual(ventanaPrincipal, true);
 		VentanaConsultarLista ventanaConsultarLista=new VentanaConsultarLista(ventanaPrincipal,true);
 		Procesos misProcesos = new Procesos();
@@ -23,7 +22,6 @@ public class Relaciones {
 		// Se establecen las relaciones entre clases
 		ventanaPrincipal.setCoordinador(miCoordinador);
 		ventanaRegistro.setCoordinador(miCoordinador);
-		ventanaOperaciones.setCoordinador(miCoordinador);
 		ventanaConsultaIndividual.setCoordinador(miCoordinador);
 		ventanaConsultarLista.setCoordinador(miCoordinador);
 		miPersonaDAO.setCoordinador(miCoordinador);
@@ -33,7 +31,6 @@ public class Relaciones {
 		// Se establecen relaciones con la clase coordinador
 		miCoordinador.setVentanaPrincipal(ventanaPrincipal);
 		miCoordinador.setVentanaRegistro(ventanaRegistro);
-		miCoordinador.setVentanaOperaciones(ventanaOperaciones);
 		miCoordinador.setVentanaConsultaIndividual(ventanaConsultaIndividual);
 		miCoordinador.setVentanaConsultarLista(ventanaConsultarLista);
 		miCoordinador.setProcesos(misProcesos);
