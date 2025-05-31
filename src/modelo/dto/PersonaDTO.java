@@ -7,18 +7,28 @@ public class PersonaDTO {
     private int edad;
     private double peso;
     private double talla;
+    private String estado;
 
     public PersonaDTO() {
 
     }
 
-    public PersonaDTO(String documento, String nombre, int edad, double peso, double talla) {
+    public PersonaDTO(String documento, String nombre, int edad, double peso, double talla, String estado) {
         super();
         this.documento = documento;
         this.nombre = nombre;
         this.edad = edad;
         this.peso = peso;
         this.talla = talla;
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getDocumento() {
@@ -63,6 +73,12 @@ public class PersonaDTO {
 
     @Override
     public String toString() {
-        return "PersonaDTO [documento=" + documento + ", nombre=" + nombre + ", edad=" + edad + "]";
+        return "PersonaDTO{" +
+                "documento='" + documento + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", peso=" + peso +
+                ", talla=" + talla +
+                '}';
     }
 }
