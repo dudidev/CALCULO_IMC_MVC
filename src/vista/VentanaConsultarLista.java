@@ -49,7 +49,13 @@ public class VentanaConsultarLista extends JDialog implements ActionListener{
 		if (listaPersonas.size()>0) {
 
 			for (PersonaDTO personaDTO : listaPersonas) {
-				msj+="Documento: "+personaDTO.getDocumento()+"\nNombre: "+personaDTO.getNombre()+"\nedad: "+personaDTO.getEdad()+"\n\n";
+				msj+="Documento: "+personaDTO.getDocumento();
+				msj+= "\nNombre: "+personaDTO.getNombre();
+				msj+= "\nEdad: "+personaDTO.getEdad();
+				msj+= "\nTalla: " + personaDTO.getTalla();
+				msj+= "\nPeso: " + personaDTO.getPeso();
+				msj+= "\nEstado: " + personaDTO.getEstado();
+				msj+= "\n\n";
 			}
 
 		}else {
@@ -59,7 +65,6 @@ public class VentanaConsultarLista extends JDialog implements ActionListener{
 		txtAreaResultado.setText(msj);
 
 	}
-
 
 	private void iniciarComponentes() {
 		JLabel lblSistemaGestionUsuarios = new JLabel("CONSULTA LISTA PERSONAS");
