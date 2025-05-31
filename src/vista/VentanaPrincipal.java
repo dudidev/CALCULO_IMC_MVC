@@ -44,15 +44,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
 
     private void iniciarComponentes() {
-        JLabel lblSistemaGestionUsuarios = new JLabel("SISTEMA GESTION USUARIOS");
+        JLabel lblSistemaGestionUsuarios = new JLabel("SISTEMA DE IMC");
         lblSistemaGestionUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
         lblSistemaGestionUsuarios.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
         lblSistemaGestionUsuarios.setBounds(33, 6, 388, 30);
         contentPane.add(lblSistemaGestionUsuarios);
 
         JTextArea txtrEstaAplicacinPermite = new JTextArea();
-        txtrEstaAplicacinPermite.setText("Esta aplicación permite verificar el uso del patrón MVC, se \ntienen diferentes validaciones separando las responsabilidades\nde cada clase y usando el coordinador para delegar los llamados\n\nIngrese a las diferentes opciones y pruebe el funcionamiento");
-        txtrEstaAplicacinPermite.setColumns(5);
+        txtrEstaAplicacinPermite.setText("Esta aplicación permite calcular tu indice de masa corporal de acuerdo \na tu peso y talla para determinar un calculo preciso");
+        txtrEstaAplicacinPermite.setColumns(3);
         txtrEstaAplicacinPermite.setBounds(21, 48, 410, 127);
         contentPane.add(txtrEstaAplicacinPermite);
 
@@ -68,7 +68,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
         btnConsultarLista = new JButton("Consultar Lista de Personas");
         btnConsultarLista.addActionListener(this);
-        btnConsultarLista.setBounds(21, 248, 415, 29);
+        btnConsultarLista.setBounds(16, 248, 415, 29);
         contentPane.add(btnConsultarLista);
     }
 
