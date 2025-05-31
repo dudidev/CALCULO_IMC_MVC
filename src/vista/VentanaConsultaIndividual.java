@@ -20,6 +20,12 @@ public class VentanaConsultaIndividual extends JDialog implements ActionListener
     private JTextField txtEdad;
     private JLabel lblConsultaDeUsuarios;
     private JButton btnEliminar;
+    private JLabel lblPeso;
+    private JTextField txtPeso;
+    private JLabel lblTalla;
+    private JTextField txtTalla;
+    private JLabel lblEstado;
+    private JTextField txtEstado;
 
     public VentanaConsultaIndividual(VentanaPrincipal ventanaPrincipal, boolean modal) {
         /**Al llamar al constructor super(), le enviamos el
@@ -35,12 +41,9 @@ public class VentanaConsultaIndividual extends JDialog implements ActionListener
     }
 
     private void iniciarComponentes() {
-        txtNombre = new JTextField();
-        txtNombre.setBounds(17, 117, 200, 30);
-        getContentPane().add(txtNombre);
 
-        btnConsulta = new JButton("...");
-        btnConsulta.setBounds(290, 49, 56, 30);
+        btnConsulta = new JButton("\uD83D\uDD0D");
+        btnConsulta.setBounds(200, 49, 56, 30);
         btnConsulta.addActionListener(this);
         getContentPane().add(btnConsulta);
 
@@ -53,20 +56,48 @@ public class VentanaConsultaIndividual extends JDialog implements ActionListener
         lblNombre.setBounds(17, 91, 144, 30);
         getContentPane().add(lblNombre);
 
+        txtNombre = new JTextField();
+        txtNombre.setBounds(17, 117, 200, 30);
+        getContentPane().add(txtNombre);
+
+        lblPeso = new JLabel("Peso");
+        lblPeso.setBounds(17, 160, 50, 30);
+        getContentPane().add(lblPeso);
+
+        txtPeso = new JTextField();
+        txtPeso.setBounds(50, 160, 50, 30);
+        getContentPane().add(txtPeso);
+
+        lblTalla = new JLabel("Talla");
+        lblTalla.setBounds(110, 160, 50, 30);
+        getContentPane().add(lblTalla);
+
+        txtTalla = new JTextField();
+        txtTalla.setBounds(150, 160, 50, 30);
+        getContentPane().add(txtTalla);
+
+        lblEstado = new JLabel("Estado");
+        lblEstado.setBounds(210, 160, 50, 30);
+        getContentPane().add(lblEstado);
+
+        txtEstado = new JTextField();
+        txtEstado.setBounds(260, 160, 80, 30);
+        getContentPane().add(txtEstado);
+
         lblDocumento = new JLabel("Documento");
-        lblDocumento.setBounds(114, 48, 91, 30);
+        lblDocumento.setBounds(17, 48, 90, 30);
         getContentPane().add(lblDocumento);
 
         txtDocumento = new JTextField();
-        txtDocumento.setBounds(204, 48, 85, 30);
+        txtDocumento.setBounds(100, 48, 85, 30);
         getContentPane().add(txtDocumento);
 
         lblEdad = new JLabel("Edad");
-        lblEdad.setBounds(249, 91, 49, 30);
+        lblEdad.setBounds(250, 91, 50, 30);
         getContentPane().add(lblEdad);
 
         txtEdad = new JTextField();
-        txtEdad.setBounds(247, 117, 87, 30);
+        txtEdad.setBounds(250, 117, 90, 30);
         getContentPane().add(txtEdad);
 
         lblConsultaDeUsuarios = new JLabel("CONSULTA DE USUARIOS");
@@ -96,13 +127,18 @@ public class VentanaConsultaIndividual extends JDialog implements ActionListener
             if (miPersona!=null) {
                 txtNombre.setText(miPersona.getNombre());
                 txtEdad.setText(miPersona.getEdad()+"");
+                txtPeso.setText(miPersona.getPeso()+"");
+                txtTalla.setText(miPersona.getTalla()+"");
+                txtEstado.setText(miPersona.getEstado());
+
             }else {
                 JOptionPane.showMessageDialog(null, "NO SE ENCUENTRA LA PERSONA","NO REGISTRA",JOptionPane.ERROR_MESSAGE);
                 txtNombre.setText("");
                 txtEdad.setText("");
+                txtPeso.setText("");
+                txtTalla.setText("");
+                txtEstado.setText("");
             }
-
-
 
         }else if(e.getSource()==btnActualizar) {
             actualizarUsuario();
@@ -125,6 +161,9 @@ public class VentanaConsultaIndividual extends JDialog implements ActionListener
         PersonaDTO personaNueva=coordinador.consultarPersona(txtDocumento.getText());
         personaNueva.setNombre(txtNombre.getText());
         personaNueva.setEdad(Integer.parseInt(txtEdad.getText()));
+        personaNueva.setPeso(Double.parseDouble(txtPeso.getText()));
+        personaNueva.setTalla(Double.parseDouble(txtTalla.getText()));
+        personaNueva.setEstado(txtEstado.getText());
 
         String resp=coordinador.actualizarPersona(personaNueva);
 
