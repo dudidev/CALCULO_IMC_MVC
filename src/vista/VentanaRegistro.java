@@ -21,6 +21,12 @@ public class VentanaRegistro extends JDialog implements ActionListener{
     private JTextField txtEdad;
     private JButton btnConsultar;
     private JLabel lblRegistrarUsuarios;
+    private JLabel lblTalla;
+    private JTextField txtTalla;
+    private JLabel lblPeso;
+    private JTextField txtPeso;
+    private double peso;
+    private double talla;
 
     public VentanaRegistro(VentanaPrincipal ventanaPrincipal, boolean modal) {
         /**Al llamar al constructor super(), le enviamos el
@@ -28,7 +34,7 @@ public class VentanaRegistro extends JDialog implements ActionListener{
          * que es hija*/
         super(ventanaPrincipal, modal);
         setTitle("Ventana Registro Persona");
-        setSize(382, 277);
+        setSize(382, 377);
         getContentPane().setLayout(null);
         setLocationRelativeTo(null);
 
@@ -67,6 +73,22 @@ public class VentanaRegistro extends JDialog implements ActionListener{
         txtDocumento.setBounds(140, 110, 110, 30);
         getContentPane().add(txtDocumento);
 
+        lblTalla = new JLabel("Talla");
+        lblTalla.setBounds(50, 150, 91, 30);
+        getContentPane().add(lblTalla);
+
+        txtTalla = new JTextField();
+        txtTalla.setBounds(140, 150, 110, 30);
+        getContentPane().add(txtTalla);
+
+        lblPeso = new JLabel("Peso");
+        lblPeso.setBounds(270, 150, 50, 30);
+        getContentPane().add(lblPeso);
+
+        txtPeso = new JTextField();
+        txtPeso.setBounds(313, 150, 40, 30);
+        getContentPane().add(txtPeso);
+
         lblEdad = new JLabel("Edad");
         lblEdad.setBounds(270, 110, 49, 30);
         getContentPane().add(lblEdad);
@@ -100,8 +122,13 @@ public class VentanaRegistro extends JDialog implements ActionListener{
             validaRegistro();
 
         }else if(e.getSource()==btnCalculos) {
-            JOptionPane.showMessageDialog(null, "Tiene tan, si sabe?");
-            //coordinador.mostrarVentanaOperaciones();
+            String doc = txtDocumento.getText();
+            String nombre = txtNombre.getText();
+            int edad = Integer.parseInt(txtEdad.getText());
+            peso = Double.parseDouble(txtPeso.getText());
+            talla = Double.parseDouble(txtTalla.getText());
+            coordinador.mostrarCalculos(doc, nombre, edad, peso, talla);
+
         }else if(e.getSource()==btnConsultar) {
             coordinador.mostrarVentanaConsultarLista();;
         }
@@ -112,12 +139,16 @@ public class VentanaRegistro extends JDialog implements ActionListener{
         boolean validaNombre=coordinador.validarDatoTexto(txtNombre.getText());
         boolean validaDocumento=coordinador.validarDatoTexto(txtNombre.getText());
         boolean validaEdad=coordinador.validarNumero(txtEdad.getText());
+        boolean validaTalla=coordinador.validarNumero(txtTalla.getText());
+        boolean validaPeso=coordinador.validarNumero(txtPeso.getText());
 
         verificaCampo(validaNombre, txtNombre);
         verificaCampo(validaDocumento, txtDocumento);
         verificaCampo(validaEdad, txtEdad);
+        verificaCampo(validaTalla, txtTalla);
+        verificaCampo(validaPeso, txtPeso);
 
-        if(validaNombre==true && validaDocumento==true && validaEdad==true) {
+        if(validaNombre==true && validaDocumento==true && validaEdad==true && validaTalla==true && validaPeso==true) {
 
             String res=coordinador.consultarDatos(txtNombre.getText());
 
@@ -145,6 +176,9 @@ public class VentanaRegistro extends JDialog implements ActionListener{
         miPersonaDTO.setDocumento(txtDocumento.getText());
         miPersonaDTO.setNombre(txtNombre.getText());
         miPersonaDTO.setEdad(Integer.parseInt(txtEdad.getText()));
+        miPersonaDTO.setPeso(Double.parseDouble(txtPeso.getText()));
+        miPersonaDTO.setTalla(Double.parseDouble(txtTalla.getText()));
+        miPersonaDTO.setEstado(coordinador.resultadoIMC(peso, talla));
 
         String resp=coordinador.registrarPersona(miPersonaDTO);
 
@@ -159,6 +193,8 @@ public class VentanaRegistro extends JDialog implements ActionListener{
         txtNombre.setText("");
         txtDocumento.setText("");
         txtEdad.setText("");
+        txtPeso.setText("");
+        txtTalla.setText("");
         lblResultado.setText("");
         btnCalculos.setVisible(false);
         btnConsultar.setVisible(false);
