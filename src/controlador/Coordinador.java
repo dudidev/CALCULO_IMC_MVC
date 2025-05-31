@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class Coordinador {
     private VentanaPrincipal ventanaPrincipal;
     private VentanaRegistro ventanaRegistro;
-    private VentanaOperaciones ventanaOperaciones;
     private Procesos procesos;
     private PersonaDAO miPersonaDAO;
     private ConexionBD miConexionBD;
@@ -26,10 +25,6 @@ public class Coordinador {
 
     public void setVentanaRegistro(VentanaRegistro ventanaRegistro) {
         this.ventanaRegistro = ventanaRegistro;
-    }
-
-    public void setVentanaOperaciones(VentanaOperaciones ventanaOperaciones) {
-        this.ventanaOperaciones = ventanaOperaciones;
     }
 
     public void setProcesos(Procesos procesos) {
@@ -58,9 +53,6 @@ public class Coordinador {
     }
 
     //Métodos para mostrar las ventanas
-    public void mostrarVentanaOperaciones() {
-        ventanaOperaciones.setVisible(true);
-    }
 
     public void mostrarVentanaRegistro() {
         ventanaRegistro.limpiarFormulario();
@@ -87,6 +79,7 @@ public class Coordinador {
         String datos = procesos.obtenerDatos(nombre);
         return datos;
     }
+
 
     public String calcularOperacion(String seleccion, String num1, String num2) {
         return procesos.calcularOperaciones(seleccion, num1, num2);
@@ -125,6 +118,12 @@ public class Coordinador {
         return miPersonaDAO.eliminarPersona(documento);
     }
 
-    public void mostrarCalculos() {
+    public String resultadoIMC(double peso, double talla){
+        return procesos.calcularIMC(peso, talla);
+    }
+
+    public void mostrarCalculos(String doc, String nombre, int edad, double peso, double talla) {
+        String estado = resultadoIMC(peso, talla);
+        procesos.imprimirDatos(doc, nombre, edad, peso, talla, estado);
     }
 }
