@@ -1,6 +1,6 @@
 package modelo;
-import javax.xml.transform.stream.StreamSource;
-import java.util.Scanner;
+import javax.swing.*;
+
 import controlador.Coordinador;
 
 public class Procesos {
@@ -21,39 +21,6 @@ public class Procesos {
 
         return "Este es un mensaje de ejemplo";
     }
-
-    public String calcularOperaciones(String seleccion, String numero1, String numero2) {
-
-        double num1=Double.parseDouble(numero1);
-        double num2=Double.parseDouble(numero2);
-
-        String resp="";
-        switch (seleccion) {
-            case "suma":
-                resp=num1+" + "+num2+"= "+(num1+num2);
-                break;
-            case "resta":
-                resp=num1+" - "+num2+"= "+(num1-num2);
-                break;
-            case "multiplicacion":
-                resp=num1+" * "+num2+"= "+(num1*num2);
-                break;
-            case "division":
-
-                if (num2==0) {
-                    resp="No se puede dividir por 0";
-                }else {
-                    resp=num1+" / "+num2+"= "+(num1/num2);
-                }
-
-                break;
-            default:resp="Debe seleccionar una operación";
-                break;
-        }
-
-        return resp;
-    }
-
 
     /*
      * Metodo de ejemplo para validar que no se permita datos
@@ -106,9 +73,7 @@ public class Procesos {
         return retorno;
     }
 
-    private String calcularIMC() {
-        double peso = 0;
-        double talla = 0;
+    public String calcularIMC(double peso, double talla) {
 
         double imc = peso/(talla*talla);
         System.out.println(imc);
@@ -141,5 +106,16 @@ public class Procesos {
         }
 
         return estado;
+    }
+
+    public void imprimirDatos(String doc, String nombre, int edad, double peso, double talla, String estado) {
+        String msj = "\nDocumento: " + doc;
+        msj += "\nNombre: " + nombre;
+        msj += "\nEdad: " + edad;
+        msj += "\nPeso: " + peso;
+        msj += "\nTalla: " + talla;
+        msj += "\nEstado: " + estado;
+
+        JOptionPane.showMessageDialog(null, msj, "TUS CALCULOS DE IMC", JOptionPane.INFORMATION_MESSAGE);
     }
 }
