@@ -81,10 +81,6 @@ public class Coordinador {
     }
 
 
-    public String calcularOperacion(String seleccion, String num1, String num2) {
-        return procesos.calcularOperaciones(seleccion, num1, num2);
-    }
-
     public boolean validarDatoTexto(String campo) {
 
         return procesos.validarCampo(campo);
